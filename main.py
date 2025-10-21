@@ -3,13 +3,21 @@ from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForCausalLM 
 import uvicorn
 import torch
+from fastapi.templating import Jinja2Templates 
 
 app = FastAPI()
+
+template = Jinja2Templates()
 
 @app.on_event("startup")
 def my_model():
     app.state.model = AutoModelForCausalLM.from_pretrained("gpt2")
     app.state.tokenizer = AutoTokenizer.from_pretrained("gpt2")
+
+@app.get("/")
+def home():
+    page = template.Template(directory="template")
+    return page
 @app.post("/generate")
 def report_generator(
                      request: Request,
