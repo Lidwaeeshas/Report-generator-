@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate report</title>
+</head>
+<body>
+    <form id="form-data" action ="/generate" method="POST">
+        <label for="patient">Patient Details</label>
+        </br>
+        </br>
+        <input id="patient" type="text" placeholder="patient name" name="patient_name">
+        </br>
+        </br>
+         <input id="patient" type="text" placeholder="patient age" name="patient_age" maxLength ="3" pattern="\d*" inputmode="numeric">
+         </br>
+         </br>
+         <label for="gender">
+             Gender
+             <select id="gender" name="gender">
+                 <option value="male">
+                     male
+                 </option>
+                 <option value ="female">
+                     female
+                 </option>
+             </select>
+         </label>
+         </br>
+         </br>
+         <label for="clinical-history">Clinical history</label>
+         <textarea id="clinical-history" style="width:500px; height:100px" maxLength="780" name="history">
+             Clinical history 
+         </textarea>
+         </br>
+         </br>
+         <label for="findings">Findings</label>
+         <textarea id="findings" style ="width:500px;height:100px" maxLength ="780" name="findings">
+             Findings
+         </textarea>
+         <label for="doctors-info">Doctors info</label>
+         
+         </br>
+         <input type ="text" id="doctors-name" placeholder="doctors name" name="doctors_name">
+         </br>
+        </br>
+         <input type ="text" id="doctors-title" placeholder="title" name="doctors_title" maxLength="30" >
+         </br></br>
+<label for="ref_no">Reference Number</label>
+</br>
+<input type="text" id="ref_no" name="ref_no" placeholder="Enter ref no">
+<br><br>
+    <button type ="submit" id="details">generate</button>
+    </form>
+
+</body>
+</html>
