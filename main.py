@@ -4,19 +4,20 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import uvicorn
 import torch
 from fastapi.templating import Jinja2Templates 
+from fastapi.responses import Response,HTMLResponse
 
 app = FastAPI()
 
-template = Jinja2Templates()
+template = Jinja2Templates(directory="template")
 
 @app.on_event("startup")
 def my_model():
     app.state.model = AutoModelForCausalLM.from_pretrained("gpt2")
     app.state.tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
-@app.get("/")
-def home():
-    page = template.Template(directory="template")
+@app.get("/", response_class = HTMLResponse)
+def home(request: Request):
+    page = template.TemplateResponse("index1.html",{"request": request})
     return page
 @app.post("/generate")
 def report_generator(
